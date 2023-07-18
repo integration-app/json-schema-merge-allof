@@ -154,6 +154,22 @@ describe('module', function() {
     })
   })
 
+  it('ignores empty schemas', function() {
+    const result = merger({
+      allOf: [
+        {
+          type: 'string'
+        },
+        undefined,
+        null
+      ]
+    })
+
+    expect(result).to.eql({
+      type: 'string'
+    })
+  })
+
   describe('simple resolve functionality', function() {
     it('merges with default resolver if not defined resolver', function() {
       const result = merger({

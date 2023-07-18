@@ -42,7 +42,7 @@ function compareProp(key) {
 }
 
 function getAllOf(schema) {
-  let { allOf = [], ...copy } = schema
+  let { allOf = [], ...copy } = schema ?? {} // if schema is undefined
   copy = isPlainObject(schema) ? copy : schema // if schema is boolean
   return [copy, ...allOf.map(getAllOf)]
 }
